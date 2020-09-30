@@ -27,7 +27,6 @@ const NavBar = ({handleSearch, keyword, setKeyword}) => {
                         <Form
                         inline
                         onSubmit={(event) => {
-                            event.preventDefault();
                             handleSearch(event, keyword);
                             setKeyword("");
                         }}

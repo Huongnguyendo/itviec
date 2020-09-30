@@ -9,12 +9,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
+
 const JobDetail = ({ name }) => {
   const { id } = useParams();
   const [job, setJob] = useState(null);
 
   const getDetailData = async () => {
-    const url = `http://localhost:3001/jobs/${id}`;
+    const url = `SERVER_URL/${id}`;
     const response = await fetch(url);
     const data = await response.json();
     console.log("data detail", data);

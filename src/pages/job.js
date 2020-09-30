@@ -6,6 +6,7 @@ import NavBar from "./components/navBar";
 
 const QUERYSTR_PREFIX = "q";
 
+// 1. hook, help read query value
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -15,7 +16,9 @@ const Job = () => {
   const [originalJobs, setOriginalJobs] = useState([]);
 
   const history = useHistory();
+  // 2.
   let query = useQuery();
+  // 3. only get the value of the query
   let [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
 
   const getJobData = async () => {
@@ -24,7 +27,7 @@ const Job = () => {
       const response = await fetch(url);
       const data = await response.json();
       console.log("data: ", data);
-      setJobList(data);
+      setJobList(data); //
       setOriginalJobs(data);
     } catch (err) {
       console.log(err.message);
@@ -34,11 +37,14 @@ const Job = () => {
   };
 
   const handleSearch = (e) => {
+    // if theres no event or keyword, this skips to the setJobList(originalJobs);
     let filteredJobs = originalJobs;
     if (e) {
       e.preventDefault();
       history.push(`/jobs/?${QUERYSTR_PREFIX}=${encodeURIComponent(keyword)}`);
     }
+    // 4.
+    // 5. original list
     if (keyword) {
       filteredJobs = originalJobs.filter(job =>
         job.title.toLowerCase().includes(keyword.toLowerCase())
