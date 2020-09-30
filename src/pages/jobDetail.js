@@ -17,7 +17,7 @@ const JobDetail = ({ name }) => {
   const [job, setJob] = useState(null);
 
   const getDetailData = async () => {
-    const url = `SERVER_URL/${id}`;
+    const url = `${SERVER_URL}/${id}`;
     const response = await fetch(url);
     const data = await response.json();
     console.log("data detail", data);
