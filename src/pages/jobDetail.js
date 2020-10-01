@@ -8,9 +8,17 @@ import {
   faCalendarAlt
 } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
+import { css } from "@emotion/core";
+import BarLoader from "react-spinners/BarLoader";
 import NavBar from "./components/navBar";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
+const override = css`
+  display: block;
+  margin: 30px auto;
+  border-color: blue;
+`;
 
 
 const JobDetail = ({ name }) => {
@@ -29,7 +37,15 @@ const JobDetail = ({ name }) => {
     getDetailData();
   }, []);
 
-  if (!job) return <div>Loading...</div>;
+  if (!job) return <div>
+    
+    <BarLoader
+        css={override}
+        size={150}
+        color={"#123abc"}
+        loading={true}
+      />
+  </div>;
 
   return (
     <div className="outer-container">
