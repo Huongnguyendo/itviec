@@ -80,10 +80,10 @@ const Job = () => {
   return (
     <div>
         <NavBar
-        handleSearch={handleSearch}
-        keyword={keyword}
-        setKeyword={setKeyword}
-        email={user && user.email}
+        // handleSearch={handleSearch}
+        // keyword={keyword}
+        // setKeyword={setKeyword}
+        // email={user && user.email}
       ></NavBar>
       {/* {err && <h3 className="err-message">{err}</h3>} */}
       <JumbotronArea handleSearch={handleSearch}

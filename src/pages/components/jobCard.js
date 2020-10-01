@@ -14,7 +14,7 @@ const JobCard = ({job, key}) => {
     return (
         <div className="job-content" onClick={() => jobSelect()}>
         <Row className="card-row">
-            <Col className="d-flex justify-content-center">
+            <Col className="d-flex justify-content-center pr-0">
             <div className="jobcard-logo">
                 <img src={job.img} />
             </div>

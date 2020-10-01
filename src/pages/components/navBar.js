@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Logo from "../components/logo-itviec.png";
 import { useSelector, useDispatch } from "react-redux";
 
-const NavBar = ({ handleSearch, keyword, setKeyword }) => {
+const NavBar = () => {
   let dispatch = useDispatch();
   let history = useHistory();
 

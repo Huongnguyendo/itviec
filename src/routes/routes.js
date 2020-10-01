@@ -21,7 +21,7 @@ const Routes = () => {
       <Route path="/" exact component={Job} />
       <ProtectedRoute
         path="/job/:id"
-        render={(props) => <JobDetail name="bitna" />}
+        render={(props) => <JobDetail />}
       />
       <Route path="*" component={FourOhFourPage} />
     </Switch>
