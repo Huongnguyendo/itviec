@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Logo from "../components/logo-itviec.png";
 import { useSelector, useDispatch } from "react-redux";
 
-const NavBar = ({ handleSearch, keyword, setKeyword, email }) => {
+const NavBar = ({ handleSearch, keyword, setKeyword }) => {
   let dispatch = useDispatch();
   let history = useHistory();
 
@@ -48,7 +48,7 @@ const NavBar = ({ handleSearch, keyword, setKeyword, email }) => {
           
           </Form>
              */}
-             {user.email ? <p className="welcome-text ml-5 mr-5"> Welcome back <br/>{email }</p> : ""}
+             {user.email ? <p className="welcome-text ml-5 mr-5"> Welcome back <br/>{user.email }</p> : ""}
             {!user.email && <Button
             className="logInBtn mr-2 ml-3"
                 onClick={(event) => goToLogInPage(event)}

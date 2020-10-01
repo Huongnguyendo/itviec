@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Badge, Row, Col } from "react-bootstrap";
+import { Badge, Row, Col, Alert } from "react-bootstrap";
 import { Redirect, useHistory, useLocation } from "react-router-dom";
 import JobCard from "./components/jobCard";
 import JumbotronArea from "./components/jumbotron";
@@ -85,7 +85,7 @@ const Job = () => {
         setKeyword={setKeyword}
         email={user && user.email}
       ></NavBar>
-      {err && <h3 className="err-message">{err}</h3>}
+      {/* {err && <h3 className="err-message">{err}</h3>} */}
       <JumbotronArea handleSearch={handleSearch}
         keyword={keyword}
         setKeyword={setKeyword} />
