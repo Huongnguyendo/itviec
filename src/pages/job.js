@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Badge, Row, Col } from "react-bootstrap";
 import { Redirect, useHistory, useLocation } from "react-router-dom";
 import JobCard from "./components/jobCard";
+import JumbotronArea from "./components/jumbotron";
 import NavBar from "./components/navBar";
+import {JobAction} from "../redux/action/jobAction";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const QUERYSTR_PREFIX = "q";
 
@@ -12,8 +16,13 @@ function useQuery() {
 }
 
 const Job = () => {
+  const dispatch = useDispatch();
   const [jobList, setJobList] = useState([]);
-  const [originalJobs, setOriginalJobs] = useState([]);
+  // const [originalJobs, setOriginalJobs] = useState([]);
+  const originalJobs = useSelector(state => state.job.originalJobList);
+
+  const user = useSelector((state) => state.auth.user);
+  const err = useSelector((state) => state.auth.err);
 
   const history = useHistory();
   // 2.
@@ -22,18 +31,18 @@ const Job = () => {
   let [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
 
   const getJobData = async () => {
-    try {
-      const url = `http://localhost:3001/jobs`;
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log("data: ", data);
-      setJobList(data); //
-      setOriginalJobs(data);
-    } catch (err) {
-      console.log(err.message);
-    }
+    // try {
+    //   const url = `http://localhost:3001/jobs`;
+    //   const response = await fetch(url);
+    //   const data = await response.json();
+    //   console.log("data: ", data);
+    //   setJobList(data); //
+    //   setOriginalJobs(data);
+    // } catch (err) {
+    //   console.log(err.message);
+    // }
 
-    // handleSearch();
+    dispatch(JobAction.getJobData());
   };
 
   const handleSearch = (e) => {
@@ -56,6 +65,7 @@ const Job = () => {
   // use history to go to other routes
   const goToJobDetail = (id) => {
     //   return <Redirect to="./detail"/>
+    
     history.push(`/detail/${id}`);
   };
 
@@ -73,13 +83,20 @@ const Job = () => {
         handleSearch={handleSearch}
         keyword={keyword}
         setKeyword={setKeyword}
+        email={user && user.email}
       ></NavBar>
+      {err && <h3 className="err-message">{err}</h3>}
+      <JumbotronArea handleSearch={handleSearch}
+        keyword={keyword}
+        setKeyword={setKeyword} />
+      
       {/* {jobList &&
         jobList.map((item) => (
           <h1 onClick={() => goToJobDetail(item.id)}>{item.title}</h1>  
         ))} */}
-        {jobList && jobList.map(item => <JobCard className="job-content" job={item} key={item.id} />)}
-        
+        <div className="jobList-area">
+          {jobList && jobList.map(item => <JobCard className="job-content" job={item} key={item.id} />)}
+        </div>
         
     </div>
   );

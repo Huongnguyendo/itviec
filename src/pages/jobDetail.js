@@ -8,6 +8,7 @@ import {
   faCalendarAlt
 } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
+import NavBar from "./components/navBar";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -32,6 +33,7 @@ const JobDetail = ({ name }) => {
 
   return (
     <div className="outer-container">
+      <NavBar />
       <div className="middle container">
         <Container className="white-container" style={{ textAlign: "left" }}>
           {/* <h1>Detail page</h1> */}
