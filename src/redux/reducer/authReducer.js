@@ -17,7 +17,6 @@ const authReducer = (state = initialState, action) => {
     case "LOGIN_FAIL":
       state.loading = false;
       state.err = payload;
-      console.log("ngungungunug");
       return { ...state };
 
     case "LOGOUT":
