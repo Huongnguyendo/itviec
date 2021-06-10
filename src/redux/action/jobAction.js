@@ -1,4 +1,3 @@
-// make the dispatch as a parameter
 const getJobData = () => async (dispatch) => {
     try {
         const url = `http://localhost:3001/jobs`;
